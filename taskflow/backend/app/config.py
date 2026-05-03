@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv(override=True)
+load_dotenv()  # Railway env vars take priority; .env only used for local dev
 
 class Settings:
     DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./taskflow.db")
