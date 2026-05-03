@@ -17,7 +17,10 @@ export const fetchApi = async (endpoint, options = {}) => {
     delete headers['Content-Type'];
   }
 
-  const response = await fetch(`${API_URL}${endpoint}`, {
+  const cleanApiUrl = API_URL.endsWith('/') ? API_URL.slice(0, -1) : API_URL;
+  const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+
+  const response = await fetch(`${cleanApiUrl}${cleanEndpoint}`, {
     ...options,
     headers,
   });
